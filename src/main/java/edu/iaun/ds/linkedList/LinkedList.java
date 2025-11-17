@@ -1,4 +1,4 @@
-package edu.iaun.ds.simple.linkedList;
+package edu.iaun.ds.linkedList;
 
 public interface LinkedList<E> {
     void add(E element);

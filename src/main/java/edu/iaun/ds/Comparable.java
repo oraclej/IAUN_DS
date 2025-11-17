@@ -1,4 +1,4 @@
-package edu.iaun.ds.simple;
+package edu.iaun.ds;
 
 public interface Comparable <E> {
     int compareTo(E e);

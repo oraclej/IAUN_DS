@@ -1,13 +1,12 @@
-package edu.iaun.ds.simple.queue;
+package edu.iaun.ds.stack;
 
-public interface Queue <E>{
+public interface Stack<E> {
     int size();
     boolean isEmpty();
     E peek();
-    E dequeue();
-    void enqueue(E e);
+    void push(E e);
+    E pop();
     int capacity();
     void reverse();
     void clear();
-
 }
