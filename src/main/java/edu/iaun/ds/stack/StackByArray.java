@@ -1,67 +1,69 @@
 package edu.iaun.ds.stack;
 
 public class StackByArray<E> implements Stack<E> {
-    public Object[] arr;
-    public int top;
-    public StackByArray(int size) {
-        arr = (E[]) new Object[size];
+    private int top;
+    private final int MAX_SIZE;
+    private Object[] arr;
+
+    public StackByArray(int MAX_SIZE) {
+        this.MAX_SIZE = MAX_SIZE;
         top = -1;
+        arr = new Object[MAX_SIZE];
     }
 
     @Override
     public int size() {
-        return 0;
+        return top + 1;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return top == -1;
     }
 
     @Override
     public E peek() {
-        return null;
+        if (top == -1)
+            throw new StackEmptyException();
+        return (E) arr[top];
     }
 
     @Override
     public void push(E e) {
-
+        if (top == arr.length - 1)
+            throw new StackFullException();
+        top++;
+        arr[top] = e;
     }
 
     @Override
     public E pop() {
-        return null;
+        if (top == -1)
+            throw new StackEmptyException();
+        top--;
+        return (E) arr[top + 1];
     }
 
     @Override
     public int capacity() {
-        return 0;
+        return MAX_SIZE;
     }
 
     @Override
     public void reverse() {
-//        #1
-//        E[] temp = (E[]) new Object[arr.length];
-//        for (int i = 0; i < this.size(); i++) {
-//            temp[i] = this.peek();
-//            this.pop();
-//        }
-//        System.arraycopy(temp, 0, arr, 0, this.size());
-
-//        #2
-        int i = 0;
-        int j = top;
-        while (i < j) {
-            Object temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            i++;
-            j--;
+        int left = 0;
+        int right = arr.length - 1;
+        while (left < right) {
+            Object temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
         }
     }
 
     @Override
     public void clear() {
-
+        top = -1;
     }
 }
